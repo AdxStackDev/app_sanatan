@@ -1,0 +1,51 @@
+App Instructions
+
+apk build cmd: "C:\Program Files\Java\jdk-17\bin\keytool.exe" -genkeypair -v -keystore android\app\my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000 -storepass myStorePassword -keypass myKeyPassword -dname "CN=YourName, OU=Dev, O=Company, L=City, S=State, C=IN"
+
+
+Signed APK:
+android\app\build\outputs\apk\release\app-release.apk
+
+Signed AAB (Google Play preferred):
+android\app\build\outputs\bundle\release\app-release.aab
+
+apk location: \app2\android\app\build\outputs\apk\release\app-release.apk
+
+After updating app for the Play Store, increment the version number in android/app/build.gradle:
+android {
+    defaultConfig {
+        versionCode 2
+        versionName "1.1.0"
+    }
+}
+
+Do NOT delete my-release-key.keystore.
+
+Losing it means you cannot update your app on Google Play; you’d have to publish a new app instead.
+
+
+Your App Icon in Android Project
+Locate your React Native Android project at android/app/src/main/res/.
+
+You will see multiple mipmap-*dpi folders inside like mipmap-mdpi, mipmap-hdpi, mipmap-xhdpi, mipmap-xxhdpi, mipmap-xxxhdpi.
+
+Replace the default ic_launcher.png, ic_launcher_round.png files inside these folders with the icon files from asset studio
+
+Update AndroidManifest.xml (Usually Not Needed)
+This step is generally handled for you, but verify icon is set correctly in android/app/src/main/AndroidManifest.xml inside the <application> tag:
+
+xml
+<application
+   android:icon="@mipmap/ic_launcher"
+   android:roundIcon="@mipmap/ic_launcher_round"
+   ...>
+
+Clean and Rebuild Android App
+In your React Native project directory, run:
+
+bash
+cd android
+./gradlew clean
+cd ..
+npx react-native run-android --variant=release
+
