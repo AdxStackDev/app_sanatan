@@ -76,4 +76,23 @@ yarn-error.log
 
 
 instructions.txt
+build-releases-auto.cmd
 
+# Environment variables
+.env
+.env.*
+
+# Log files
+*.log
+
+# Android/keystore and build artifacts
+**/android/app/release.keystore
+**/android/app/debug.keystore
+**/android/*.keystore
+**/android/key.properties
+**/android/app/*.jks
+/android/app/build/
+/android/build/
+
+# iOS build artifacts
+ios/build/

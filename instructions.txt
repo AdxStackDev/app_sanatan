@@ -49,3 +49,67 @@ cd android
 cd ..
 npx react-native run-android --variant=release
 
+
+
+to add drawer:
+
+Babel Plugin
+
+// babel.config.js
+module.exports = {
+  presets: ['module:metro-react-native-babel-preset'],
+  plugins: [
+    // other plugins
+    'react-native-reanimated/plugin', // 👈 MUST be LAST
+  ],
+};
+
+
+Hermes
+
+override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
+
+
+Make sure android/app/build.gradle has:
+
+project.ext.react = [
+    enableHermes: true
+]
+
+
+Then clean and rebuild:
+
+cd android && ./gradlew clean
+cd ..
+npx react-native run-android
+
+
+Clear Metro Cache
+
+npx react-native start --reset-cache
+
+
+Reanimated Version
+
+Make sure you have a compatible version:
+
+npm install react-native-reanimated@latest
+
+
+Then clean + rebuild again.
+
+Optional: Add ReanimatedPackage manually (rarely needed)
+If autolinking fails for some reason:
+
+override fun getPackages(): List<ReactPackage> =
+    PackageList(this).packages.apply {
+        add(com.swmansion.reanimated.ReanimatedPackage())
+    }
+
+
+Uninstall old app from device/emulator
+
+[WorkletsError] sometimes persists because old worklets are cached.
+
+Fully uninstall the app, then rebuild.
+

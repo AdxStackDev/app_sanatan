@@ -1,12 +1,14 @@
 import React, { useRef } from 'react';
-import { Image, View, Text, StyleSheet, ScrollView, Animated, TouchableWithoutFeedback } from 'react-native';
+import { Image, Text, StyleSheet, ScrollView, Animated, TouchableWithoutFeedback } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import List from '../arti';
 import Astro from '../astro';
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 function AnimatedCard({ onPress, imageSource, label }) {
   const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -14,13 +16,25 @@ function AnimatedCard({ onPress, imageSource, label }) {
   const onPressIn = () => {
     Animated.spring(scaleAnim, { toValue: 0.95, useNativeDriver: true }).start();
   };
+
   const onPressOut = () => {
-    Animated.spring(scaleAnim, { toValue: 1, friction: 3, tension: 40, useNativeDriver: true }).start();
+    Animated.spring(scaleAnim, {
+      toValue: 1,
+      friction: 3,
+      tension: 40,
+      useNativeDriver: true,
+    }).start();
   };
 
   return (
-    <TouchableWithoutFeedback onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress}>
-      <Animated.View style={[styles.card, { transform: [{ scale: scaleAnim }] }]}>
+    <TouchableWithoutFeedback
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      onPress={onPress}
+    >
+      <Animated.View
+        style={[styles.card, { transform: [{ scale: scaleAnim }] }]}
+      >
         <Image source={imageSource} style={styles.cardImage} />
         <Text style={styles.cardLabel}>{label}</Text>
       </Animated.View>
@@ -33,37 +47,64 @@ function MainScreen({ navigation }) {
     <ScrollView contentContainerStyle={styles.listContainer}>
       <AnimatedCard
         onPress={() => navigation.navigate('ListStack', { screen: 'Artis' })}
-        imageSource={{ uri: 'https://i.pinimg.com/1200x/ee/cc/f0/eeccf07882de663d5ff5bd658750bbc1.jpg' }}
+        imageSource={{
+          uri: 'https://i.pinimg.com/1200x/ee/cc/f0/eeccf07882de663d5ff5bd658750bbc1.jpg',
+        }}
         label="आरती संग्रह"
       />
       <AnimatedCard
         onPress={() => navigation.navigate('Astro')}
-        imageSource={{ uri: 'https://i.pinimg.com/736x/93/e1/4c/93e14c7ea4b7a453eeab0f20e4117009.jpg' }}
+        imageSource={{
+          uri: 'https://i.pinimg.com/736x/93/e1/4c/93e14c7ea4b7a453eeab0f20e4117009.jpg',
+        }}
         label="ज्योतिष"
       />
     </ScrollView>
   );
 }
 
+function MainStack() {
+  return (
+    <Stack.Navigator initialRouteName="Main">
+      <Stack.Screen
+        name="Main"
+        component={MainScreen}
+        options={{ title: 'सनातन ज्ञान', headerTitleAlign: 'center' }}
+      />
+      <Stack.Screen
+        name="ListStack"
+        component={List}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Astro"
+        component={Astro}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 export default function Main() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Main">
-        <Stack.Screen name="Main" component={MainScreen} options={{ title: 'सनातन ज्ञान', headerTitleAlign: 'center' }} />
-        <Stack.Screen 
-          name="ListStack" 
-          component={List} 
-          options={{ headerShown: false }}
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen
+          name="Home"
+          component={MainStack}
+          options={{ title: 'मुखपृष्ठ' }}
         />
-        <Stack.Screen 
-          name="Astro" 
-          component={Astro} 
-          options={{ headerShown: false }}
-        />   
-
-
-      </Stack.Navigator>
-
+        <Drawer.Screen
+          name="Artis"
+          component={List}
+          options={{ title: 'आरती संग्रह' }}
+        />
+        <Drawer.Screen
+          name="Astro"
+          component={Astro}
+          options={{ title: 'ज्योतिष' }}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
