@@ -10,7 +10,7 @@ import ArtiList from './artilist';
 
 const Stack = createNativeStackNavigator();
 
-export default function List() {
+export default function Aarti() {
   return (
   <Stack.Navigator initialRouteName="ArtiList">
     <Stack.Screen name="ArtiList" component={ArtiList} options={{ title: 'आरती संग्रह', headerTitleAlign: 'center', headerShown: false }} />

@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import LinearGradient from 'react-native-linear-gradient';
-import List from '../arti';
+import Arti from '../arti';
 import Astro from '../astro';
 
 /* TOKENS */
@@ -65,13 +65,13 @@ function MainScreen({ navigation }) {
         <Text accessibilityRole="header" style={styles.title}>सनातन ज्ञान</Text>
         {/* Example quick test cards (replace navigation for testing) */}
         <AnimatedCard
-          onPress={() => {}}
+          onPress={() => navigation.navigate('Artis')}
           imageSource={{ uri: 'https://i.pinimg.com/1200x/ee/cc/f0/eeccf07882de663d5ff5bd658750bbc1.jpg' }}
           label="आरती संग्रह"
           sublabel="Aarti Collection"
         />
         <AnimatedCard
-          onPress={() => {}}
+          onPress={() => navigation.navigate('Astro')}
           imageSource={{ uri: 'https://i.pinimg.com/736x/93/e1/4c/93e14c7ea4b7a453eeab0f20e4117009.jpg' }}
           label="ज्योतिष"
           sublabel="Astrology"
@@ -85,8 +85,7 @@ function MainStack() {
   return (
     <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Main" component={MainScreen} />
-      {/* <Stack.Screen name="ListStack" component={List} />
-      <Stack.Screen name="Astro" component={Astro} /> */}
+
     </Stack.Navigator>
   );
 }
@@ -97,12 +96,12 @@ function CustomDrawerContent(props) {
         <View style={drawerStyles.header}>
           <View style={drawerStyles.avatarRing}>
             <Image
-              source={{ uri: 'https://i.pinimg.com/736x/4a/0c/8d/4a0c8d9b8e2d4f9a9f5d3a2e3c4b5a6d.jpg' }}
+              source={{ uri: 'https://i.pinimg.com/1200x/83/fd/65/83fd6599d32b214ab49931d6c5fc5e4f.jpg' }}
               style={drawerStyles.avatar}
             />
           </View>
           <Text style={drawerStyles.title}>सनातन ज्ञान</Text>
-          <Text style={drawerStyles.subtitle}>Sanatan Gyan</Text>
+          {/* <Text style={drawerStyles.subtitle}>Sanatan Gyan</Text> */}
         </View>
         <View style={drawerStyles.listWrap}>
           <DrawerItemList {...props} />
@@ -136,7 +135,7 @@ export default function Main() {
         }}
       >
         <Drawer.Screen name="Home" component={MainStack} options={{ title: 'मुखपृष्ठ' }} />
-        <Drawer.Screen name="Artis" component={List} options={{ title: 'आरती संग्रह' }} />
+        <Drawer.Screen name="Artis" component={Arti} options={{ title: 'आरती संग्रह' }} />
         <Drawer.Screen name="Astro" component={Astro} options={{ title: 'ज्योतिष' }} />
       </Drawer.Navigator>
     </NavigationContainer>
