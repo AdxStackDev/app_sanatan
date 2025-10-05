@@ -6,6 +6,7 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '
 import LinearGradient from 'react-native-linear-gradient';
 import Arti from '../arti';
 import Astro from '../astro';
+import Wallpaper from '../wallpapers';
 
 /* TOKENS */
 const COLOR = {
@@ -76,6 +77,12 @@ function MainScreen({ navigation }) {
           label="ज्योतिष"
           sublabel="Astrology"
         />
+        <AnimatedCard
+          onPress={() => navigation.navigate('Wallpaper')}
+          imageSource={{ uri: 'https://i.pinimg.com/736x/93/e1/4c/93e14c7ea4b7a453eeab0f20e4117009.jpg' }}
+          label="Wallpaper"
+          // sublabel="Astrology"
+        />
       </ScrollView>
     </LinearGradient>
   );
@@ -137,6 +144,7 @@ export default function Main() {
         <Drawer.Screen name="Home" component={MainStack} options={{ title: 'मुखपृष्ठ' }} />
         <Drawer.Screen name="Artis" component={Arti} options={{ title: 'आरती संग्रह' }} />
         <Drawer.Screen name="Astro" component={Astro} options={{ title: 'ज्योतिष' }} />
+        <Drawer.Screen name="Wallpaper" component={Wallpaper} options={{ title: 'Wallpaper' }} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
