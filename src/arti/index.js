@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator();
 export default function List() {
   return (
   <Stack.Navigator initialRouteName="ArtiList">
-    <Stack.Screen name="ArtiList" component={ArtiList} options={{ title: 'आरती संग्रह', headerTitleAlign: 'center' }} />
+    <Stack.Screen name="ArtiList" component={ArtiList} options={{ title: 'आरती संग्रह', headerTitleAlign: 'center', headerShown: false }} />
     <Stack.Screen name="Ganesh" component={Ganesh} options={{ title: 'श्री गणेश जी की आरती', headerTitleAlign: 'center' }} />
     <Stack.Screen name="ShreeRam" component={ShreeRam} options={{ title: 'श्री राम जी की आरती', headerTitleAlign: 'center' }} />
     <Stack.Screen name="Hanuman" component={Hanuman} options={{ title: 'श्री हनुमान जी की आरती', headerTitleAlign: 'center' }} />

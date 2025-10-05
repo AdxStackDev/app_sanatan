@@ -5,46 +5,46 @@ import LinearGradient from 'react-native-linear-gradient';
 export default function ArtiList({ navigation }) {
   return (
     <LinearGradient
-      colors={['#180f00', '#2a1900', '#3a2200']}
+      colors={['#ff9800', '#ffd700', '#b71c1c']}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.screen}
     >
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>आरती संग्रह</Text>
+        {/* <Text style={styles.title}>आरती संग्रह</Text> */}
 
         <ArtiItem
           label="श्री गणेश जी की आरती"
           sublabel="Shri Ganesh Aarti"
-          image={{ uri: 'https://i.pinimg.com/736x/28/2f/1a/282f1a5a3f2e5e8f6c1c2c62b4f2b7b4.jpg' }}
+          image={{ uri: 'https://i.pinimg.com/1200x/a4/ae/21/a4ae211f0e2528381243bb2ee7aa17d7.jpg' }}
           onPress={() => navigation.navigate('Ganesh')}
         />
 
         <ArtiItem
           label="श्री राम जी की आरती"
           sublabel="Shri Ram Aarti"
-          image={{ uri: 'https://i.pinimg.com/736x/0d/79/2c/0d792c3a3b9c4a4f87e6c2fa6c0df0c1.jpg' }}
+          image={{ uri: 'https://i.pinimg.com/1200x/4c/30/27/4c3027cc66c77761b39a0ac8d0ee31cb.jpg' }}
           onPress={() => navigation.navigate('ShreeRam')}
         />
 
         <ArtiItem
           label="श्री हनुमान जी की आरती"
           sublabel="Shri Hanuman Aarti"
-          image={{ uri: 'https://i.pinimg.com/736x/aa/2a/33/aa2a33f1b1e54a5da0476a6b8a3b8f2f.jpg' }}
+          image={{ uri: 'https://i.pinimg.com/1200x/82/b2/67/82b267a710868118be345c8c87cb7c28.jpg' }}
           onPress={() => navigation.navigate('Hanuman')}
         />
 
         <ArtiItem
           label="श्री कृष्ण जी की आरती"
           sublabel="Shri Krishna Aarti"
-          image={{ uri: 'https://i.pinimg.com/736x/4a/0c/8d/4a0c8d9b8e2d4f9a9f5d3a2e3c4b5a6d.jpg' }}
+          image={{ uri: 'https://i.pinimg.com/736x/4b/2c/15/4b2c15a06568d3db0adeb1b05a58438e.jpg' }}
           onPress={() => navigation.navigate('Krishna')}
         />
 
         <ArtiItem
           label="श्री सीता माता जी की आरती"
           sublabel="Shri Sita Mata Aarti"
-          image={{ uri: 'https://i.pinimg.com/736x/8a/7c/12/8a7c12c4d8e84a6cbd2e1b2c6f3a1e5b.jpg' }}
+          image={{ uri: 'https://i.pinimg.com/1200x/e7/1f/2e/e71f2e5eced8d4893fe984ce33d6e87d.jpg' }}
           onPress={() => navigation.navigate('SitaMaa')}
         />
       </ScrollView>

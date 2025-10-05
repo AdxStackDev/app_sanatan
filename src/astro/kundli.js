@@ -112,7 +112,7 @@ export default function Kundli() {
   return (
     <LinearGradient colors={['#180f00', '#2a1900', '#3a2200']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.screen}>
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-        <Text style={styles.title}>Kundli Generator</Text>
+        {/* <Text style={styles.title}>Kundli Generator</Text> */}
 
         <View style={styles.rowWrap}>
           {AYANAMSA_OPTIONS.map(o => (

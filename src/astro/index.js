@@ -26,6 +26,7 @@ function AstroNavigator() {
             </View>
           ),
           headerTitleAlign: 'center',
+          headerShown: false
         }}
       />
       <Stack.Screen

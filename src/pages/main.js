@@ -135,9 +135,9 @@ export default function Main() {
           sceneContainerStyle: { backgroundColor: 'transparent' },
         }}
       >
-        <Drawer.Screen name="Home" component={MainStack} options={{ title: 'मुखपृष्ठ • Home' }} />
-        <Drawer.Screen name="Artis" component={List} options={{ title: 'आरती संग्रह • Aarti' }} />
-        <Drawer.Screen name="Astro" component={Astro} options={{ title: 'ज्योतिष • Astrology' }} />
+        <Drawer.Screen name="Home" component={MainStack} options={{ title: 'मुखपृष्ठ' }} />
+        <Drawer.Screen name="Artis" component={List} options={{ title: 'आरती संग्रह' }} />
+        <Drawer.Screen name="Astro" component={Astro} options={{ title: 'ज्योतिष' }} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

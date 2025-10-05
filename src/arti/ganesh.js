@@ -14,13 +14,14 @@ const DecorativeBorder = ({ children }) => (
 
 export default function Ganesh() {
   return (
-    <LinearGradient
-      colors={['#180f00', '#2a1900', '#3a2200']}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.screen}
-    >
-      <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+      <LinearGradient
+        colors={['#ff9800', '#ffd700', '#b71c1c']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.screen}
+      >
+
+      <SafeAreaView style={styles.safeArea} edges={['left', 'right', 'bottom']}>
         <ImageBackground
           source={{ uri: 'https://i.pinimg.com/1200x/3e/78/6d/3e786dea0fcfbc87f99ecea0134e7dbc.jpg' }}
           style={styles.bg}
@@ -28,7 +29,7 @@ export default function Ganesh() {
         >
           <View style={styles.vignette} />
           <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-            <Text accessibilityRole="header" style={styles.heading}>श्री गणेश जी आरती</Text>
+            {/* <Text accessibilityRole="header" style={styles.heading}>श्री गणेश जी आरती</Text> */}
 
             <DecorativeBorder>
               <Text style={styles.text}>
@@ -67,10 +68,10 @@ export default function Ganesh() {
 
 const COLOR = {
   textPrimary: '#fff7e6',
-  textMuted: '#ffe4b5',
-  saffron: '#ffb300',
-  saffronDeep: '#ff9100',
-  borderGold: '#FFD54F',
+  // textMuted: '#ffe4b5',
+  // saffron: '#ffb300',
+  // saffronDeep: '#ff9100',
+  // borderGold: '#FFD54F',
 };
 
 const styles = StyleSheet.create({
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
   },
 
   bgImage: {
-    opacity: 0.35, // subtle image behind content
+    opacity: 0.35,
   },
 
   vignette: {
@@ -122,7 +123,6 @@ const styles = StyleSheet.create({
     bottom: 8,
     borderRadius: 18,
     backgroundColor: 'rgba(255,179,0,0.18)',
-    filter: 'blur(8px)', // ignored on native, kept for web parity
   },
 
   borderContainer: {

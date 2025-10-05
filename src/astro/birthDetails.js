@@ -87,7 +87,7 @@ const BirthDetails = () => {
     const { nakshatra, chandra_rasi, soorya_rasi, zodiac, additional_info } = birthData;
     return (
       <View style={styles.resultContainer}>
-        <Text style={styles.sectionTitle}>Birth Insights</Text>
+        {/* <Text style={styles.sectionTitle}>Birth Insights</Text> */}
 
         <View style={styles.tagsRow}>
           <Text style={styles.tag}>Zodiac: {zodiac?.name}</Text>
@@ -125,7 +125,7 @@ const BirthDetails = () => {
   return (
     <LinearGradient colors={['#180f00', '#2a1900', '#3a2200']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.screen}>
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-        <Text style={styles.title}>Enter Birth Details</Text>
+        {/* <Text style={styles.title}>Enter Birth Details</Text> */}
 
         <View style={styles.row}>
           <TextInput
