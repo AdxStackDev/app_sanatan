@@ -11,9 +11,6 @@ export default function AstroList({ navigation }) {
       style={styles.screen}
     >
       <View style={styles.container}>
-        {/* <Text accessibilityRole="header" style={styles.title}>
-          ज्योतिष सेवाएँ
-        </Text> */}
 
         <View style={styles.buttonGroup}>
           <Pressable

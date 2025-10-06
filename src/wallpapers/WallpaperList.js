@@ -13,7 +13,6 @@ export default function WallpaperList({ navigation }) {
   return (
     <LinearGradient colors={['#ff9800', '#ffd700', '#b71c1c']} style={{flex:1}}>
       <ScrollView contentContainerStyle={styles.wallList}>
-        <Text style={styles.title}>My Wallpapers</Text>
         {wallpapers.map((wall, idx) => (
           <Pressable
             key={wall.id}

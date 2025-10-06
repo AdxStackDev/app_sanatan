@@ -49,7 +49,6 @@ export default function WallpaperViewer({ route }) {
         )}
       />
       
-      {/* FIXED BUTTONS AT BOTTOM - ALWAYS VISIBLE */}
       <View style={styles.fixedFooter}>
         <TouchableOpacity 
           style={styles.actionBtn} 

@@ -1,55 +1,69 @@
 import React, { useRef } from 'react';
-import { StatusBar, Image, Text, StyleSheet, ScrollView, Animated, Pressable, View } from 'react-native';
+import {
+  StatusBar,
+  Image,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Animated,
+  Pressable,
+  View,
+  Dimensions
+} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList
+} from '@react-navigation/drawer';
 import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Arti from '../arti';
 import Astro from '../astro';
 import Wallpaper from '../wallpapers';
 
-/* TOKENS */
+const { width } = Dimensions.get('window');
+
 const COLOR = {
-  textPrimary: '#fff7e6',
-  textMuted: '#ffe4b5',
-  surface: 'rgba(255,255,255,0.06)',
-  outline: 'rgba(255,255,255,0.12)',
-  shadow: '#000',
-  glass: 'rgba(255,255,255,0.08)',
-  glassBorder: 'rgba(255,255,255,0.18)',
-  accent: '#ffb300',
-  headerGradA: '#3a2200',
-  headerGradB: '#2a1900',
-  bgGradA: '#180f00',
-  bgGradB: '#2a1900',
-  bgGradC: '#3a2200',
+  saffron: '#FF9933',
+  maroon: '#5b0a0a',
+  gold: '#FFD700',
+  cream: '#fff8e7',
+  bgGradA: '#2b0800',
+  bgGradB: '#5b0a0a',
+  bgGradC: '#7a1c00',
+  glow: 'rgba(255, 204, 102, 0.25)',
+  border: 'rgba(255,255,255,0.15)',
 };
-const SPACING = { xs: 6, sm: 10, md: 14, lg: 18, xl: 24, xxl: 32 };
-const RADIUS = { sm: 10, md: 14, lg: 18, pill: 28 };
-const ELEVATION = {
-  z1: { shadowColor: COLOR.shadow, shadowOpacity: 0.14, shadowRadius: 6, shadowOffset: { width: 0, height: 4 }, elevation: 4 },
-  z2: { shadowColor: COLOR.shadow, shadowOpacity: 0.22, shadowRadius: 12, shadowOffset: { width: 0, height: 8 }, elevation: 8 },
-};
+
 const TYPO = {
-  title: { fontSize: 28, fontWeight: '800', letterSpacing: 0.6 },
-  label: { fontSize: 20, fontWeight: '800', letterSpacing: 0.3 },
+  title: { fontSize: 30, fontWeight: '800', letterSpacing: 0.8 },
+  label: { fontSize: 20, fontWeight: '700', letterSpacing: 0.4 },
   sub: { fontSize: 12, fontWeight: '600', opacity: 0.95, letterSpacing: 0.3 },
 };
 
-/* COMPONENTS */
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 function AnimatedCard({ onPress, imageSource, label, sublabel }) {
   const scaleAnim = useRef(new Animated.Value(1)).current;
-  const onPressIn = () => Animated.spring(scaleAnim, { toValue: 0.96, useNativeDriver: true }).start();
-  const onPressOut = () => Animated.spring(scaleAnim, { toValue: 1, friction: 4, tension: 60, useNativeDriver: true }).start();
+
+  const onPressIn = () => Animated.spring(scaleAnim, {
+    toValue: 0.95, useNativeDriver: true
+  }).start();
+  const onPressOut = () => Animated.spring(scaleAnim, {
+    toValue: 1, friction: 4, tension: 60, useNativeDriver: true
+  }).start();
 
   return (
-    <Pressable onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress} android_ripple={{ color: 'rgba(255,255,255,0.08)' }}>
+    <Pressable onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress}>
       <Animated.View style={[styles.card, { transform: [{ scale: scaleAnim }] }]}>
         <Image source={imageSource} style={styles.cardImage} resizeMode="cover" />
-        <View style={styles.cardOverlay} />
+        <LinearGradient
+          colors={['rgba(0,0,0,0.4)', 'rgba(0,0,0,0.75)']}
+          style={StyleSheet.absoluteFill}
+        />
         <View style={styles.cardTextWrap}>
           <Text style={styles.cardLabel}>{label}</Text>
           {sublabel ? <Text style={styles.cardSublabel}>{sublabel}</Text> : null}
@@ -61,27 +75,37 @@ function AnimatedCard({ onPress, imageSource, label, sublabel }) {
 
 function MainScreen({ navigation }) {
   return (
-    <LinearGradient colors={[COLOR.bgGradA, COLOR.bgGradB, COLOR.bgGradC]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.screen}>
+    <LinearGradient
+      colors={[COLOR.bgGradA, COLOR.bgGradB, COLOR.bgGradC]}
+      start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
+      style={styles.screen}
+    >
+      <StatusBar barStyle="light-content" />
       <ScrollView contentContainerStyle={styles.listContainer}>
-        <Text accessibilityRole="header" style={styles.title}>सनातन ज्ञान</Text>
-        {/* Example quick test cards (replace navigation for testing) */}
+        <View style={styles.headerDecor}>
+          {/* <Icon name="om" size={48} color={COLOR.gold} style={styles.glowIcon} /> */}
+          <Text style={styles.title}>🌺 सनातन ज्ञान 🌺</Text>
+        </View>
+
         <AnimatedCard
           onPress={() => navigation.navigate('Artis')}
-          imageSource={{ uri: 'https://i.pinimg.com/1200x/ee/cc/f0/eeccf07882de663d5ff5bd658750bbc1.jpg' }}
+          imageSource={{ uri: 'https://i.pinimg.com/736x/cf/cb/4b/cfcb4ba9bf803e34aae76396e7e5ea39.jpg' }}
           label="आरती संग्रह"
           sublabel="Aarti Collection"
         />
+
         <AnimatedCard
           onPress={() => navigation.navigate('Astro')}
-          imageSource={{ uri: 'https://i.pinimg.com/736x/93/e1/4c/93e14c7ea4b7a453eeab0f20e4117009.jpg' }}
+          imageSource={{ uri: 'https://i.pinimg.com/736x/35/ec/3f/35ec3fd20c534795d28654db71a87d7e.jpg' }}
           label="ज्योतिष"
-          sublabel="Astrology"
+          sublabel="Astrology & Panchang"
         />
+
         <AnimatedCard
           onPress={() => navigation.navigate('Wallpaper')}
-          imageSource={{ uri: 'https://i.pinimg.com/736x/93/e1/4c/93e14c7ea4b7a453eeab0f20e4117009.jpg' }}
-          label="Wallpaper"
-          // sublabel="Astrology"
+          imageSource={{ uri: 'https://i.pinimg.com/736x/82/95/50/829550fc764bceec23accbcdf6aeebf8.jpg' }}
+          label="वॉलपेपर"
+          sublabel="Divine Backgrounds"
         />
       </ScrollView>
     </LinearGradient>
@@ -92,27 +116,23 @@ function MainStack() {
   return (
     <Stack.Navigator initialRouteName="Main" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Main" component={MainScreen} />
-
     </Stack.Navigator>
   );
 }
+
 function CustomDrawerContent(props) {
   return (
-    <LinearGradient colors={['#1a1002', COLOR.bgGradB, COLOR.bgGradC]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}>
-      <DrawerContentScrollView {...props} contentContainerStyle={drawerStyles.scroll}>
+    <LinearGradient colors={[COLOR.bgGradA, COLOR.bgGradB]} style={{ flex: 1 }}>
+      <DrawerContentScrollView {...props}>
         <View style={drawerStyles.header}>
-          <View style={drawerStyles.avatarRing}>
-            <Image
-              source={{ uri: 'https://i.pinimg.com/1200x/83/fd/65/83fd6599d32b214ab49931d6c5fc5e4f.jpg' }}
-              style={drawerStyles.avatar}
-            />
-          </View>
-          <Text style={drawerStyles.title}>सनातन ज्ञान</Text>
-          {/* <Text style={drawerStyles.subtitle}>Sanatan Gyan</Text> */}
+          <Image
+            source={{ uri: 'https://i.pinimg.com/1200x/c6/83/9c/c6839c43fe06b8ef6d12ab6ec7be73d1.jpg' }}
+            style={drawerStyles.avatar}
+          />
+          <Text style={drawerStyles.title}>🕉 सनातन ज्ञान 🕉</Text>
+          <Text style={drawerStyles.subtitle}>धर्म, ज्योतिष, आरती, साधना</Text>
         </View>
-        <View style={drawerStyles.listWrap}>
-          <DrawerItemList {...props} />
-        </View>
+        <DrawerItemList {...props} />
       </DrawerContentScrollView>
       <View style={drawerStyles.footer}>
         <Text style={drawerStyles.footerText}>ॐ सर्वे भवन्तु सुखिनः</Text>
@@ -124,27 +144,28 @@ function CustomDrawerContent(props) {
 export default function Main() {
   return (
     <NavigationContainer>
-      <StatusBar barStyle="light-content" />
       <Drawer.Navigator
         initialRouteName="Home"
         drawerContent={(props) => <CustomDrawerContent {...props} />}
         screenOptions={{
           headerBackground: () => (
-            <LinearGradient colors={[COLOR.headerGradA, COLOR.headerGradB]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }} />
+            <LinearGradient
+              colors={[COLOR.maroon, COLOR.saffron]}
+              style={{ flex: 1 }}
+            />
           ),
-          headerTintColor: COLOR.textPrimary,
+          headerTintColor: COLOR.cream,
           headerTitleAlign: 'center',
-          drawerActiveTintColor: '#2a1900',
-          drawerActiveBackgroundColor: 'rgba(255,179,0,0.85)',
-          drawerInactiveTintColor: COLOR.textMuted,
-          drawerLabelStyle: { fontWeight: '700' },
-          sceneContainerStyle: { backgroundColor: 'transparent' },
+          drawerActiveTintColor: COLOR.maroon,
+          drawerActiveBackgroundColor: COLOR.gold,
+          drawerInactiveTintColor: COLOR.cream,
+          drawerLabelStyle: { fontWeight: '700', fontSize: 15 },
         }}
       >
         <Drawer.Screen name="Home" component={MainStack} options={{ title: 'मुखपृष्ठ' }} />
         <Drawer.Screen name="Artis" component={Arti} options={{ title: 'आरती संग्रह' }} />
         <Drawer.Screen name="Astro" component={Astro} options={{ title: 'ज्योतिष' }} />
-        <Drawer.Screen name="Wallpaper" component={Wallpaper} options={{ title: 'Wallpaper' }} />
+        <Drawer.Screen name="Wallpaper" component={Wallpaper} options={{ title: 'वॉलपेपर' }} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
@@ -152,59 +173,70 @@ export default function Main() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1 },
-  listContainer: { padding: SPACING.xl, gap: SPACING.lg },
+  listContainer: { padding: 20, gap: 20, alignItems: 'center' },
+  headerDecor: { alignItems: 'center', marginBottom: 16 },
+  glowIcon: {
+    textShadowColor: COLOR.glow,
+    textShadowRadius: 10,
+    textShadowOffset: { width: 0, height: 0 },
+  },
   title: {
     ...TYPO.title,
-    color: COLOR.textPrimary,
-    textAlign: 'center',
-    textShadowColor: 'rgba(0,0,0,0.35)',
+    color: COLOR.gold,
+    textShadowColor: 'rgba(0,0,0,0.4)',
     textShadowRadius: 10,
-    textShadowOffset: { width: 0, height: 2 },
-    marginBottom: SPACING.lg,
+    marginTop: 6,
   },
   card: {
-    height: 160,
-    borderRadius: RADIUS.lg,
+    width: width * 0.9,
+    height: 180,
+    borderRadius: 18,
     overflow: 'hidden',
-    backgroundColor: COLOR.glass,
     borderWidth: 1,
-    borderColor: COLOR.glassBorder,
-    ...ELEVATION.z2,
+    borderColor: COLOR.border,
+    backgroundColor: 'rgba(255,255,255,0.08)',
   },
   cardImage: { width: '100%', height: '100%' },
-  cardOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.28)' },
-  cardTextWrap: { position: 'absolute', left: SPACING.lg, right: SPACING.lg, bottom: SPACING.lg },
-  cardLabel: { ...TYPO.label, color: '#fffbe6' },
-  cardSublabel: { ...TYPO.sub, color: COLOR.textMuted, marginTop: 4 },
-});
-const drawerStyles = StyleSheet.create({
-  scroll: { paddingTop: 0 },
-  header: {
-    paddingTop: 48,
-    paddingBottom: 16,
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderColor: 'rgba(255,255,255,0.15)',
-    backgroundColor: COLOR.surface,
+  cardTextWrap: { position: 'absolute', left: 20, bottom: 20 },
+  cardLabel: {
+    ...TYPO.label,
+    color: COLOR.cream,
+    textShadowColor: 'rgba(0,0,0,0.6)',
+    textShadowRadius: 8,
   },
-  avatarRing: {
-    width: 76,
-    height: 76,
-    borderRadius: 38,
-    overflow: 'hidden',
-    borderWidth: 2,
-    borderColor: 'rgba(255,179,0,0.6)',
+  cardSublabel: {
+    ...TYPO.sub,
+    color: COLOR.gold,
+    marginTop: 4,
+  },
+});
+
+const drawerStyles = StyleSheet.create({
+  header: {
+    alignItems: 'center',
+    paddingVertical: 24,
+    borderBottomWidth: 1,
+    borderColor: COLOR.border,
+  },
+  avatar: {
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    borderWidth: 3,
+    borderColor: COLOR.gold,
     marginBottom: 10,
   },
-  avatar: { width: '100%', height: '100%' },
-  title: { color: COLOR.textPrimary, fontSize: 18, fontWeight: '800' },
-  subtitle: { color: COLOR.textMuted, fontSize: 12, marginTop: 2 },
-  listWrap: { paddingTop: 8, paddingBottom: 12 },
+  title: { color: COLOR.gold, fontSize: 18, fontWeight: '800' },
+  subtitle: { color: COLOR.cream, fontSize: 12 },
   footer: {
-    padding: 12,
+    paddingVertical: 12,
     borderTopWidth: 1,
-    borderColor: 'rgba(255,255,255,0.15)',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    borderColor: COLOR.border,
+    alignItems: 'center',
   },
-  footerText: { color: COLOR.textMuted, textAlign: 'center', fontWeight: '700' },
+  footerText: {
+    color: COLOR.gold,
+    fontWeight: '700',
+    fontSize: 14,
+  },
 });
