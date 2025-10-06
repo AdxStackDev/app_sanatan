@@ -1,4 +1,30 @@
 # 🕉️ Har Har Mahadev | Jai Shree Ram 🙏
+## 📱 Screenshots
+
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/AdxStackDev/app_sanatan/blob/main/imgs/main.png" width="200" />
+    </td>
+    <td>
+      <img src="https://github.com/AdxStackDev/app_sanatan/blob/main/imgs/horo.png" width="200" />
+    </td>
+    <td>
+      <img src="https://github.com/AdxStackDev/app_sanatan/blob/main/imgs/drawer.png" width="200" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="https://github.com/AdxStackDev/app_sanatan/blob/main/imgs/arti.png" width="200" />
+    </td>
+    <td>
+      <img src="https://github.com/AdxStackDev/app_sanatan/blob/main/imgs/artilist.png" width="200" />
+    </td>
+    
+  </tr>
+</table>
+
+
 
 # 🕉️ Sanatan Gyan
 
@@ -28,9 +54,6 @@ A beautiful React Native devotional app designed for the Hindu community, featur
 - **Glassmorphism Cards**: Modern translucent card designs with elegant shadows
 - **Responsive Navigation**: Custom drawer with devotional header and footer
 - **Accessibility**: Screen reader support and proper contrast ratios
-
-## 📱 Screenshots
-
 
 ## 🚀 Installation
 
