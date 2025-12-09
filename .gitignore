@@ -96,3 +96,9 @@ build-releases-auto.cmd
 
 # iOS build artifacts
 ios/build/
+
+# Utility Scripts and Icon Fix Documentation
+ICON_FIX_*.md
+*.py
+clean-android.ps1
+resize-icons.js
