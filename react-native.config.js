@@ -3,5 +3,5 @@ module.exports = {
     ios: {},
     android: {},
   },
-  assets: ['./src/media/'],
+  assets: ['./src/media/', './node_modules/react-native-vector-icons/Fonts/'],
 };
