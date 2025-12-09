@@ -102,3 +102,5 @@ ICON_FIX_*.md
 *.py
 clean-android.ps1
 resize-icons.js
+
+/guide
